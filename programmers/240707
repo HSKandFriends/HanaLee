@@ -9,10 +9,14 @@ vector<int> solution(int num, int total) {
     vector<int> answer;
     int mid=total/num;
     int i=0;
-    
+
+// 24-07-08: insert(index, value) 대신에 push_back(value)를 사용해보세요! 뒤에 추가하는 method입니다.
+//           추가로 이 문제는 if 홀수일 경우 else(짝수일 경우)로 하면 풀립니다! 다시 한 번 도전해 보세요.
+//           (오답은 else if (mid==0) 부분에서 발생하였습니다.)
+//           정답을 맞추신 후엔 python으로 다시 한 번 풀어보세요!
     
     if (num%2==1){
-        answer.insert(answer.begin(),mid);
+        answer.insert(answer.begin(),mid); 
         for(i=1;i<num/2+1;i++){  
             answer.insert(answer.begin()+(i*2-1),mid-i);
             answer.insert(answer.begin()+(i*2),mid+i);
