@@ -1,0 +1,24 @@
+1. 자료 구조 : data 조직, 관리, 저장. / data 효율적 사용 위함.
+bnzn2426.tistory.com/115
+
+복합 자료 구조 : 1) 선형 
+                 정적 자료 구조 - 배열
+                 동적 자료 구조 - 링크드리스트, *큐, *스택   => malloc를 사용해야함.
+                2) 비선형
+                 트리(가지 치기), 그래프(정렬되어 있지X)
+
+* linked list - 1줄 연결(다음 경로)/트리는 두 개씩 연결 <=심화과정 가면 아닐수도
+
+2. linked list : head - key,next - key, next - // - // - Null
+3. hash table
+4. graph
+5. tree
+6. heap
+
+<Stack>
+1. push, pop
+2. C언어로 스택 구현 확인. //velog.io/@minpic/C언어로-스택-구현
+
+
+<숙제>
+1. 올바른 괄호 / 제로 / 스택 수열

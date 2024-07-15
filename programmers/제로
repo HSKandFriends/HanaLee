@@ -1,0 +1,39 @@
+//C++ 숫자 입력방법
+//0) int num1=0;
+//1) cin>>num1;
+//숫자 출력
+//cout<<num1;
+// Online C++ compiler to run C++ program online
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int k=0;
+    int number=0;
+    int i=0, j=0;
+    int arr[100000]={0};
+    int result=0;
+    cin>>k;
+    
+    for(i=0;i<k;i++){
+        cin>>number;
+        if (number==0){
+            j--;
+            //cout<<"delete";
+        }
+        else{
+            //cout<<"number:"<<number;
+            arr[j]=number;
+            j++;
+        }
+    }
+    //cout<<j;
+    for(i=0;i<j;i++){
+        result=result+arr[i];
+        //cout<<arr[i];
+    }
+    cout<<result;
+    
+    return 0;
+}

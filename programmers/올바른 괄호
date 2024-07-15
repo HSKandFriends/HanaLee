@@ -1,0 +1,39 @@
+//C++문법
+//1. String 문자열 길이 : 1) #include <string> 2) "string 변수명".length()
+//https://school.programmers.co.kr/learn/courses/30/lessons/12909
+
+#include<string>
+#include <iostream>
+
+using namespace std;
+
+bool solution(string s)
+{
+    bool answer = true;
+    int i=0;
+    int count = 0;
+    int error1 = 0;
+    
+    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+    cout << "Hello Cpp" << endl;
+    for(i=0;i<s.length();i++){
+        if (s[i]=='('){
+            count++;
+        }
+        else if (s[i]==')'){
+            count--;
+        }
+        if(count<0){ //error1 : ) 부터 시작했을 경우
+            error1=1;
+        }
+    }
+
+    if((error1==0)&&(count==0)){
+        answer==true;
+    }
+    else{
+        answer=false;
+    }
+    
+    return answer;
+}

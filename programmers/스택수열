@@ -1,0 +1,83 @@
+//https://www.acmicpc.net/problem/1874
+/*#include <stack>
+using namespace std;
+
+int main(){
+
+ stack<int> Stack;
+ Stack.push(7);
+ Stack.push(4);
+ Stack.pop();
+*/
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int main(){
+    stack<int> Stack1;
+    stack<int> Stack2;
+    int n=0;
+    int i=0,j=0;
+    int input_arr[100000]={0};
+    int input_number=0;
+    int highest=0;
+    int loca=0; //배열 중 top
+    int check_pop=0;
+    int now=0;
+    int flag=0;
+
+    //입력
+    cin>>n;
+
+    for(i=0;i<n;i++){ //입력 완료
+        cin>>input_number;
+        input_arr[i]=input_number;
+        if(input_number==n){ //젤 큰 값 위치 저장
+            highest=i;
+        }
+    }
+    for(i=n-1;i>highest-1;i--){ //젤 높은 수까지 거꾸로 push해서 stack1에 담기
+                              //젤 높은 수도 포함. 
+        Stack1.push(input_arr[i]);
+        cout<<"+\n";
+    }
+
+    //못 푸는 배열 판별 필요.
+
+    //
+    Stack1.pop(); //젤 높은 수 꺼내기
+    cout<<"-\n";
+    loca=highest-1; //배열 중 top
+    for(now=(n-1);now>0;now--){ //(찾고 있는 숫자)
+        check_pop=Stack1.top(); //stack 맨 위가 이전 숫자인지 확인 위함
+        if(check_pop==now) //이전 숫자 맞으면
+        {
+            Stack1.pop(); //젤 높은 수 꺼내기
+            cout<<"-\n";
+        }
+        else if(check_pop!=now)//이전 숫자 아니면 
+        {
+            flag=0;
+            for(j=0;j<loca+1;j++){//배열에서 이전 숫자 있는지 확인
+            //cout<<"arr[j]:"<<input_arr[j];
+            //cout<<"j:"<<j;
+                if((input_arr[j]==now)&&(flag==0)){
+                    highest=j;
+                    for(i=loca;i>highest-1;i--){ //젤 높은 수까지 거꾸로 push해서 stack1에 담기
+                        Stack1.push(input_arr[i]);
+                        cout<<"+\n";
+                    }
+                    Stack1.pop(); //젤 높은 수 꺼내기
+                    cout<<"-\n";
+                    loca=highest-1; //배열 중 top
+                    flag=1;
+                    //break;
+                }
+            }
+        }
+        
+    }
+    return 0;
+}
