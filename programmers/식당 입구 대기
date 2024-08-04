@@ -1,0 +1,61 @@
+//https://www.acmicpc.net/problem/26042
+
+#include <string>
+#include <vector>
+#include <queue>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int i = 0;
+	int instant = 0;
+	int A = 0;
+	int Max_size = 0, Min_num = 0;
+	queue <int> info;
+	int info_1 = 0, info_2=0;
+
+	queue <int> student;
+
+	cin >> A;
+
+	for (i = 0; i < A; i++) {
+		cin >> info_1;
+		info.push(info_1);
+		if (info_1 == 1) {
+			cin >> info_2;
+			info.push(info_2);
+		}
+	}
+
+
+	while (1) {
+		if (info.empty() == 1) {
+			break;
+		}
+		if (info.front() == 2) { //배식
+			info.pop(); //처리된 정보 빼기
+			student.pop(); //배식
+		}
+		else { //학생 줄
+			info.pop(); //처리된 정보 빼기
+			student.push(info.front()); //새 학생 줄 세우고
+			info.pop(); //처리된 정보 빼기
+
+			if (student.size() == Max_size) {
+				if (student.back() < Min_num) {
+					Min_num = student.back();
+				}
+			}
+			else if (student.size() > Max_size) {
+				Max_size = student.size();
+				Min_num = student.back();
+			}
+		}
+	}
+
+	cout << Max_size << " "<< Min_num;
+	return 0;
+
+}
