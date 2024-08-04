@@ -1,0 +1,75 @@
+//https://www.acmicpc.net/status?from_mine=1&problem_id=19644&user_id=rose000123
+//실패
+
+#include <string>
+#include <vector>
+#include <queue>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int L = 0;
+	int Ml = 0, Mk=0;
+	int arr_heat[100] = { 0 }; // 거리별 누적 공격
+	int cammo = 0; //지뢰 개수
+	queue<int> zombi_be; //좀비 체력 열
+//	queue<int> zombi_af; //좀비 체력 열
+	int health = 0; //좀비 입력
+	int count = 0;
+
+	cin >> L;
+	cin >> Ml >> Mk;
+	cin >> cammo;
+
+	for (int i = 0; i < L; i++) { //좀비 push
+		cin >> health;
+		zombi_be.push(health);
+	}
+
+	while (1) {
+		if (zombi_be.empty() == 1) { //모두 소탕, 승리
+			cout << "YES"; 
+			break;
+		}
+		//cout << zombi_be.front();
+		if (zombi_be.front() != 0) { //바로 앞에 좀비 있으면
+			if ((zombi_be.front()-(Mk+arr_heat[0])) <= 0) { //기관총 쏘기 가능
+				//cout << zombi_be.front() /* - (Mk + arr_heat[0])*/;
+				zombi_be.pop(); // zombi 1마리 처치
+				for (int i = 0; i < Ml-1;i++) { //기관총 거리만큼 //공격력 누적
+					arr_heat[i] = arr_heat[i] + Mk; 
+				}
+				//cout << "case1";
+			}
+			else if(cammo>0) {
+				zombi_be.pop(); // zombi 1마리 처치
+				cammo--;
+				//cout << "case2";
+			}
+			else {
+				//cout << "case3";
+				cout << "NO";
+				break;
+			}
+		}
+		else { //바로 앞에 없으면 > 총
+			count = 0;
+			while (zombi_be.front() == 0) {
+				zombi_be.pop();
+				count++;
+			}
+			for (int i = 0; i < Ml; i++) { //기관총 거리만큼 //공격력 누적
+				if (i > (Ml - count)) arr_heat[i - count] = 0;
+				else arr_heat[i-count] = arr_heat[i] + (Mk*count);
+			}
+		}
+	}
+
+	return 0;
+
+}
