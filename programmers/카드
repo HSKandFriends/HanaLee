@@ -1,0 +1,38 @@
+//https://www.acmicpc.net/problem/2164
+
+#include <string>
+#include <vector>
+#include <queue>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int i = 0;
+	int instant = 0;
+	int N = 0;
+	queue <int> Q;
+
+	cin >> N;
+
+	for (i = 1; i < N+1; i++) {
+		Q.push(i);
+	}
+
+	while (1) {
+		if (Q.size() == 1) {
+			break;
+		}
+		Q.pop();
+		//cout << "qfront :"<<Q.front()<<"\n";
+		instant = Q.front();
+		Q.pop();
+		Q.push(instant);
+	}
+
+	
+	cout<< Q.front();
+	return 0;
+
+}
