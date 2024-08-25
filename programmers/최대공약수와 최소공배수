@@ -1,0 +1,38 @@
+//https://www.acmicpc.net/problem/2609
+//최대공약수와 최소공배수
+
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+	int A = 0, B = 0;
+	int i = 0;
+	int small = 0, big=0;
+	int result1 = 0, result2 = 0;
+	cin >> A >> B;
+
+	if (A <= B) { small = A; big = B; }
+	else { small = B; big = A; }
+
+	while (1) {
+	    result1 = small;
+		result2 = big % small;
+		big = result1;
+		small = result2;
+		if (small == 0) {
+			cout << big<<"\n";
+			result1 = A / big;
+			result2 = B / big;
+			cout << big * result1 * result2;
+			
+			return 0;
+		}
+	}
+
+	return 0;
+}
