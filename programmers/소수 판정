@@ -1,0 +1,39 @@
+//https://www.acmicpc.net/problem/9091
+
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+	int T = 0;
+	int T_com[12] = {0};
+	int i = 0;
+	int sq = 0;
+	int count = 0;
+	cin >> T;
+	
+	for (i = 0; i < T; i++) {
+		cin >> T_com[i];
+	}
+
+	for (i = 0; i < T; i++) {
+		count = 0;
+		sq = sqrt(T_com[i]);
+		for (int j = 2; j < sq+1; j++) {
+			if (((T_com[i] % j) == 0)&&count==0) {
+				cout << "NO"<<"\n";
+				count++;
+			}
+		}
+		if (count == 0) {
+			cout << "YES" << "\n";
+		}
+	}
+
+
+	return 0;
+}
