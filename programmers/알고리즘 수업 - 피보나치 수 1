@@ -1,0 +1,44 @@
+//https://www.acmicpc.net/problem/24416
+//알고리즘 수업 - 피보나치 수 1 
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <cmath>
+
+using namespace std;
+
+int f[41] = { 0 };
+int count1 = 0, count2=0;
+
+int fib(int n) {
+	if (n == 1 or n == 2) return 1;  // 코드1
+	else {
+		count1++;
+		return (fib(n - 1) + fib(n - 2));
+	}
+}
+
+int fibonacci(int n) {
+	f[1] = 1;
+	f[2] = 1;
+	for (int i = 3; i < n; i++) {
+		f[i] = f[i - 1] + f[i - 2];
+		count2++;
+	}
+	
+	return f[n];
+}
+
+int main() {
+	int n = 0;
+	int a = 0;
+
+	cin >> n;
+	
+	fib(n);
+	a = fibonacci(n);
+	cout <<(count1+1) <<" "<< (count2+1);
+
+	return 0;
+}
