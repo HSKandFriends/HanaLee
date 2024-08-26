@@ -13,14 +13,6 @@ int sum1[304] = { 0 };
 int sum2[304] = { 0 };
 int num = 1;
 
-void stair(int add) {
-	if (sum1[add - 1] == 0) { stair(add - 1); }
-	//for (int j = 1; j < num; j++) {
-		sum1[add] = sum2[add - 1] + stair_num[add]; //전 밟음
-		sum2[add] = sum1[add - 1] + stair_num[add];//전 안 밝음
-	//}
-}
-
 int main() {
 	int i = 0;
 
@@ -30,9 +22,15 @@ int main() {
 	}
 
 	sum1[0] = 0;
-	sum2[0] = stair_num[0];
+	sum1[1]=stair_num[0]+stair_num[1];
+    sum2[0] = stair_num[0];
+    sum2[1]=0+stair_num[1];
+    
 
-	stair((num-1));
+    for (i=2;i<num;i++){
+        sum1[i] = sum2[i - 2] + stair_num[i-1]+stair_num[i]; //전 밟음
+		sum2[i] = sum1[i - 2] +stair_num[i];//전 안 밝음
+    }
 
 	if (sum1[(num - 1)] > sum2[(num - 1)]) {
 		cout << "1:"<<sum1[(num - 1)];
